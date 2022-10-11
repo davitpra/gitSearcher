@@ -5,18 +5,34 @@ import {Container} from "@mui/material"
 
 function App() {
   const [inputUser, setInputUser] = useState ("octocat");
-  const [userStater, userState]= useState (inputUser);
-
+  const [userState, setUserState]= useState (inputUser);
+  const [notFound, setNotFound] = useState (false);
+  
   const gettinUser = async(user) => {
-    const userResp = await getGitHubUser (user)
-    console.log (userResp)
+    const userResponse = await getGitHubUser (user)
+
+    if (userState === 'octocat'){
+      localStorage.setItem('octocat',JSON.stringify(userResponse)) 
+    }
+
+    if (userResponse.message === 'Not Found'){
+      const { octocat } = localStorage
+      setInputUser(octocat)
+      setUserState(JSON.parse(octocat)) // JSON.parse()
+      setNotFound(true)
+    }else {
+      setUserState(userResponse)
+      setNotFound(false) // **
+    }
   }
 
+  console.log(userState)
+  
   useEffect(() => {
     gettinUser (inputUser)
     }
   , [])
-  
+
   return (
     <Container sx={{
       background: 'whitesmoke',
