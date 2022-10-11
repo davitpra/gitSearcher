@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IconButton, Stack, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 
-function Searcher() {
-    const handleSubmit = () =>{
+function Searcher(props) {
+    const {setInputUser} = props;
+    // estado para tomar el valor de TextField
+    const [valueInput, setValueInput] = useState ('')
 
+    const onSearchValueChange = (e) => {
+        const inputValue = e.target.value
+        setValueInput (inputValue)
+    }
+
+    const handleSubmit = () =>{
+        setInputUser (valueInput)
     }
     
     return (
@@ -20,6 +29,8 @@ function Searcher() {
             placeholder='Buscar usuario Github'
             variant="outlined"
             size = 'small'
+            value={valueInput}
+            onChange = {onSearchValueChange}
             sx={{
                 width: '90%',
                 margin: "0 auto",
