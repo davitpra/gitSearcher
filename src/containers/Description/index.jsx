@@ -1,5 +1,6 @@
 import { Stack, Typography } from '@mui/material'
 import React from 'react'
+import PaperInformation from '../../components/PaperInformation'
 
 function Description(props) {
     const {userState} = props
@@ -12,6 +13,7 @@ function Description(props) {
                 : <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry</Typography>
             }
         </Stack>
+        <PaperInformation userState = {userState}/>
         </>
     )
 }
