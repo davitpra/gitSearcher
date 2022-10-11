@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Searcher from "./components/Searcher/Searcher"
+import UserCard from "./containers/UserCard";
 import {getGitHubUser} from './service/user'
 import {Container} from "@mui/material"
 
@@ -26,12 +27,10 @@ function App() {
     }
   }
 
-  console.log(userState)
-  
   useEffect(() => {
     gettinUser (inputUser)
     }
-  , [])
+  , [inputUser])
 
   return (
     <Container sx={{
@@ -45,6 +44,7 @@ function App() {
       alignItems: 'center',
     }}>
       <Searcher setInputUser={setInputUser} />
+      <UserCard userState ={userState}/>
     </Container>
   )
 }
