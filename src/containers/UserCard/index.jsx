@@ -1,6 +1,7 @@
 import { CardMedia, Grid } from '@mui/material'
 import React from 'react'
 import PrincipalInformation from '../../components/PrincipalInformation'
+import Description from '../Description'
 
 function UserCard(props) {
 
@@ -18,6 +19,7 @@ function UserCard(props) {
       <Grid item xs = {9}>
         <PrincipalInformation userState = {userState}/>
       </Grid>
+        <Description userState = {userState}></Description>
     </Grid>
 
   )
