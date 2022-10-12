@@ -35,8 +35,8 @@ function App() {
   return (
     <Container sx={{
       background: 'whitesmoke',
-      width: '80vh',
-      height: '500 px',
+      width: '80vw',
+      height: '500px',
       borderRadius: '16px',
       marginTop: '40px',
       display: 'flex',

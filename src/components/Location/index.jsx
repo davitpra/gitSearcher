@@ -15,37 +15,35 @@ function LocationInformation(props) {
     } = userState
 
     return (
-        <Grid container>
+        <Grid 
+        container
+        spacing={2}
+        sx ={{marginTop: '15px'}}
+        >
             <Grid item xs={6}>
-                <Stack>
+                <Stack direction= 'row' spacing={2}>
                     <LocationOnIcon/>
-                    <Typography>{location}</Typography>
+                    <Typography>{location || 'No available'}</Typography>
                 </Stack>
             </Grid>
             <Grid item xs= {6}>
-                <Stack>
+                <Stack direction= 'row' spacing={2}>
                     <TwitterIcon/>
-                    {twitter_username !== null
-                        ? <Typography> {`@${twitter_username}`}</Typography>
-                        : <Typography> Not Available</Typography>
-                    }
-                    
+                    <Typography>{twitter_username || 'No available'}</Typography>
                 </Stack>
             </Grid>
             <Grid item xs={6}>
-                <Stack>
+                <Stack direction= 'row' spacing={2}>
                     <LanguageIcon/>
-                    {blog !== null
-                        ? <Typography> {blog}</Typography>
-                        : <Typography> Not Available</Typography>}
+                    <a target='_blank' href ={blog} rel ='noopener noreferrer' > 
+                        <Typography>{blog || 'No available'}</Typography>
+                    </a>
                 </Stack>
             </Grid>
             <Grid item xs= {6}>
-                <Stack>
+                <Stack direction= 'row' spacing={2}>
                     <BusinessIcon/>
-                    {company !== null
-                        ? <Typography> {company}</Typography>
-                        : <Typography> Not Available</Typography>}
+                    <Typography>{company || 'No available'}</Typography>
                 </Stack>
             </Grid>
         </Grid>

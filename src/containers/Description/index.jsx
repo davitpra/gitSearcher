@@ -8,11 +8,12 @@ function Description(props) {
     const {bio} = userState
     return (
         <>
-        <Stack>
-            {bio !== null
-                ? <Typography>{bio}</Typography>
-                : <Typography>Lorem Ipsum is simply dummy text of the printing and typesetting industry</Typography>
-            }
+        <Stack
+            justifyContent='center'
+        >
+            <Typography variant='body1'>
+            {bio || `Lorem Ipsum is simply dummy text of the printing and typesetting industry`}
+            </Typography>
         </Stack>
         <PaperInformation userState = {userState}/>
         <LocationInformation userState = {userState}/>

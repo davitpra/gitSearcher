@@ -21,7 +21,7 @@ function Searcher(props) {
         direction = 'row'
         sx ={{
             marginTop: '30px',
-            width: '80%'
+            width: '90%'
     }}>
         <TextField
             id="outlined-basic" 
@@ -33,7 +33,6 @@ function Searcher(props) {
             onChange = {onSearchValueChange}
             sx={{
                 width: '90%',
-                margin: "0 auto",
             }}
         >
         </TextField>
