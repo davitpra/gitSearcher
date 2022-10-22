@@ -34,17 +34,14 @@ function Searcher(props) {
             sx={{
                 width: '90%',
             }}
-        >
-        </TextField>
-
-        <IconButton 
-            onClick={handleSubmit}
-            size= 'small'
-            sx= {{
-                left: "-45px"
-            }}>
-            <SearchIcon/>
-        </IconButton>
+            InputProps={{
+                endAdornment: (
+                    <IconButton onClick={handleSubmit} >
+                        <SearchIcon />
+                    </IconButton>
+                )
+            }}
+        />
     </Stack>
     )
 }
