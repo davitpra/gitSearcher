@@ -8,30 +8,28 @@ import {Container, CardMedia, Grid, Stack} from "@mui/material"
 
 function AppUI() {
   const [inputUser, setInputUser] = useState ("octocat");
-  const [userState, setUserState]= useState (inputUser);
+  const [data, setdata]= useState ([]);
   const [notFound, setNotFound] = useState (false);
   
-  const gettinUser = async(user) => {
-    const userResponse = await getGitHubUser (user)
-
-    if (userState === 'octocat'){
-      localStorage.setItem('octocat',JSON.stringify(userResponse)) 
-    }
-
-    if (userResponse.message === 'Not Found'){
-      const { octocat } = localStorage
-      setInputUser(octocat)
-      setUserState(JSON.parse(octocat)) // JSON.parse()
-      setNotFound(true)
-    }else {
-      setUserState(userResponse)
-      setNotFound(false) // **
-    }
-  }
-
   useEffect(() => {
-    gettinUser (inputUser)
-    }
+    (async() => {
+      const res = await getGitHubUser (inputUser)
+  
+      if (inputUser === 'octocat'){
+        localStorage.setItem('octocat',JSON.stringify(res)) 
+      }
+  
+      if (res.message === 'Not Found'){
+        setInputUser(octocat)
+        setdata(JSON.parse(localStorage.getItem('octocat'))) // JSON.parse()
+        setNotFound(true)
+      }else {
+        setdata(res)
+        setNotFound(false) // **
+        console.log (data);
+      }
+    })()
+  }
   , [inputUser])
 
   return (
@@ -56,7 +54,7 @@ function AppUI() {
             <CardMedia
               component= "img"
               alt = "Github User"
-              image={userState.avatar_url}
+              image={data.avatar_url}
               sx = {{
                 borderRadius: '50%',
                 marginLeft: '5px'
@@ -69,8 +67,8 @@ function AppUI() {
               spacing= {1}
               sx = {{margin: '30px'}}
               >
-              <PrincipalInformation userState = {userState}/>
-              <Description userState = {userState}></Description>
+              <PrincipalInformation data = {data}/>
+              <Description data = {data}></Description>
             </Stack>
           </Grid>
         </Grid>

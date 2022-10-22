@@ -3,9 +3,8 @@ import React from 'react'
 import LocationInformation from '../../components/Location'
 import PaperInformation from '../../components/PaperInformation'
 
-function Description(props) {
-    const {userState} = props
-    const {bio} = userState
+function Description({data}) {
+    const {bio} = data
     return (
         <>
         <Stack
@@ -15,8 +14,8 @@ function Description(props) {
             {bio || `Lorem Ipsum is simply dummy text of the printing and typesetting industry`}
             </Typography>
         </Stack>
-        <PaperInformation userState = {userState}/>
-        <LocationInformation userState = {userState}/>
+        <PaperInformation data = {data}/>
+        <LocationInformation data = {data}/>
         </>
     )
 }

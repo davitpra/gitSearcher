@@ -1,14 +1,12 @@
 import { Typography, Stack } from '@mui/material'
 import React from 'react'
 
-function PrincipalInformation(props) {
-
-    const {userState} = props
+function PrincipalInformation({data}) {
     const {
         name, 
         login,
         created_at,
-    }= userState
+    }= data
 
     return (
     <>

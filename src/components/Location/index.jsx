@@ -5,14 +5,13 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LanguageIcon from "@mui/icons-material/Language";
 import BusinessIcon from '@mui/icons-material/Business';
 
-function LocationInformation(props) {
-    const {userState} = props
+function LocationInformation({data}) {
     const {
     location,
     twitter_username,
     blog,
     company,
-    } = userState
+    } = data
 
     return (
         <Grid 

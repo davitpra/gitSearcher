@@ -1,13 +1,12 @@
 import { Paper, Stack, Typography} from '@mui/material'
 import React from 'react'
 
-function PaperInformation(props) {
-    const {userState} = props
+function PaperInformation({data}) {
     const {
         public_repos,
         followers,
         following
-    } = userState
+    } = data
 
     return (
         <Paper elevation = {3}>
