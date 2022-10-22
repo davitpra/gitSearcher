@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
-import Searcher from "../components/Searcher/Searcher"
-import UserCard from "../containers/UserCard";
-import PrincipalInformation from '../components/PrincipalInformation'
-import Description from '../containers/Description'
+import Searcher from "../Components/Searcher/Searcher"
+import UserCard from "../Components/UserCard";
+import PrincipalInformation from '../Components/PrincipalInformation'
+import Description from '../Components/Description'
+import LocationInformation from '../Components/Location'
+import PaperInformation from '../Components/PaperInformation'
 import {getGitHubUser} from '../service/user'
-import {Container, CardMedia, Grid, Stack} from "@mui/material"
+import {Container, CardMedia, Grid, Stack, Typography} from "@mui/material"
 
 function AppUI() {
   const [inputUser, setInputUser] = useState ("octocat");
@@ -32,8 +34,7 @@ function AppUI() {
   }
   , [inputUser])
 
-  return (
-    <Container sx={{
+  const containerStyle = {
       background: 'whitesmoke',
       width: '80vw',
       height: '500px',
@@ -42,14 +43,13 @@ function AppUI() {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-    }}>
+  }
+
+  return (
+    <Container sx={containerStyle}>
       <Searcher setInputUser={setInputUser} />
       <UserCard>
-        <Grid 
-        container 
-        spacing={2}
-        sx = {{marginTop:"15px"}}
-        > 
+        <Grid container spacing={2} sx = {{marginTop:"15px"}}> 
           <Grid item xs ={3}>
             <CardMedia
               component= "img"
@@ -62,13 +62,17 @@ function AppUI() {
             />
           </Grid>
           <Grid item xs = {9}>
-            <Stack
-              direction = "column"
-              spacing= {1}
-              sx = {{margin: '30px'}}
-              >
+            <Stack direction = "column" spacing= {1} sx = {{margin: '30px'}}>
               <PrincipalInformation data = {data}/>
-              <Description data = {data}></Description>
+              <Description>
+                <Stack justifyContent='center'>
+                  <Typography variant='body1'>
+                    {data.bio || `Lorem Ipsum is simply dummy text of the printing and typesetting industry`}
+                  </Typography>
+                </Stack>
+                <PaperInformation data = {data}/>
+                <LocationInformation data = {data}/>
+              </Description>
             </Stack>
           </Grid>
         </Grid>
