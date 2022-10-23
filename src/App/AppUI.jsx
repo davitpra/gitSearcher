@@ -5,32 +5,21 @@ import PrincipalInformation from '../Components/PrincipalInformation'
 import Description from '../Components/Description'
 import LocationInformation from '../Components/Location'
 import PaperInformation from '../Components/PaperInformation'
-import {getGitHubUser} from '../service/user'
+// import {getGitHubUser} from '../service/user'
 import {Container, CardMedia, Grid, Stack, Typography} from "@mui/material"
+import useGitSearch from "./useGitSearch";
 
 function AppUI() {
-  const [inputUser, setInputUser] = useState ("octocat");
-  const [data, setdata]= useState ([]);
-  const [notFound, setNotFound] = useState (false);
+  const {
+    inputUser,
+    data,
+    setInputUser,
+    setdata,
+    getUser,
+  }= useGitSearch ()
   
   useEffect(() => {
-    (async() => {
-      const res = await getGitHubUser (inputUser)
-  
-      if (inputUser === 'octocat'){
-        localStorage.setItem('octocat',JSON.stringify(res)) 
-      }
-  
-      if (res.message === 'Not Found'){
-        setInputUser(octocat)
-        setdata(JSON.parse(localStorage.getItem('octocat'))) // JSON.parse()
-        setNotFound(true)
-      }else {
-        setdata(res)
-        setNotFound(false) // **
-        console.log (data);
-      }
-    })()
+    getUser (inputUser)
   }
   , [inputUser])
 
@@ -47,8 +36,8 @@ function AppUI() {
 
   return (
     <Container sx={containerStyle}>
-      <Searcher setInputUser={setInputUser} />
-      <UserCard>
+      <Searcher size="sm" setInputUser={setInputUser} />
+      <UserCard size="sm">
         <Grid container spacing={2} sx = {{marginTop:"15px"}}> 
           <Grid item xs ={3}>
             <CardMedia
