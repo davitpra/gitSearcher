@@ -21,6 +21,7 @@ function useGitSearch() {
             setdata(res)
             setNotFound(false) // **
         }
+        console.log (data)
     }
 
     return {
